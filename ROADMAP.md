@@ -1,0 +1,4 @@
+- project setup : https://khalilstemmler.com/blogs/typescript/node-starter-project/
+-common.js
+-typescript
+-tclinter - https://khalilstemmler.com/blogs/typescript/eslint-for-typescript/ 
