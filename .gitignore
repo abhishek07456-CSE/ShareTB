@@ -1,4 +1,4 @@
 build
-node_modules
 launch.json
 .env
+node_modules
