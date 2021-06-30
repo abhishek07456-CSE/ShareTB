@@ -1,1 +1,5 @@
-console.log('Hello world!');
+import App from './providers/App';
+console.log("app running");
+App.clearConsole();
+App.loadDatabase();
+App.loadServer();
