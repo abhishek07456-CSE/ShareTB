@@ -8,7 +8,7 @@ import express from 'express';
 
 import Locals from './Local';
 import Routes from './Routes';
-
+import ExceptionHandler from '../ErrorHandler/Handler';
 class Express {
 	/**
 	 * Create the express object
@@ -46,7 +46,9 @@ class Express {
 		// Registering Exception / Error Handlers
 		// this.express.use(ExceptionHandler.logErrors);
 		// this.express.use(ExceptionHandler.clientErrorHandler);
-		// this.express.use(ExceptionHandler.errorHandler);
+		this.app = ExceptionHandler.errorHandler(this.app);
+		this.app = ExceptionHandler.routeNotFound(this.app);
+
 		// this.express = ExceptionHandler.notFoundHandler(this.express);
 
 		// Start the server on the specified port
