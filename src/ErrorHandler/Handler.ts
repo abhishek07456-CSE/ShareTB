@@ -5,7 +5,6 @@ class Handler{
 
     errorHandler = (app : express.Application) : express.Application => {
         app.use((err,req,res,next)=>{
-            console.log(err);
             Log.error(err.stack);
             if (req.xhr) {
                 return res.status(500).send({error: 'Something went wrong!'});
