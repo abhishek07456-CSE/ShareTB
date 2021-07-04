@@ -9,4 +9,5 @@
      router.get('/sud', smaller);
      app.use('/user', router) // in short ie. /first/sub or /first/user
 
--
+-DOCKER
+-ERROR HANDLER
