@@ -9,6 +9,7 @@ import express from 'express';
 import Locals from './Local';
 import Routes from './Routes';
 import ExceptionHandler from '../ErrorHandler/Handler';
+import Kernel  from '../Middleware/Kernel';
 class Express {
 	/**
 	 * Create the express object
@@ -22,6 +23,7 @@ class Express {
 		this.app = express();
 		this.mountRoutes();
 		this.mountEnv();
+		this.mountCustomMiddleware();
 	}
 	static express(): any {
 		throw new Error('Method not implemented.');
@@ -34,6 +36,10 @@ class Express {
 	private mountRoutes(): void {
 		this.app = Routes.mountPrivateApi(this.app);
 		this.app = Routes.mountPublicApi(this.app);
+	}
+
+	private mountCustomMiddleware() : void {
+		this.app = Kernel.init(this.app);
 	}
 
 	/**
