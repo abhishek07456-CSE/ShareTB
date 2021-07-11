@@ -10,6 +10,7 @@ import Locals from './Local';
 import Routes from './Routes';
 import ExceptionHandler from '../ErrorHandler/Handler';
 import Kernel  from '../Middleware/Kernel';
+import DB from './DB';
 class Express {
 	/**
 	 * Create the express object
@@ -24,11 +25,14 @@ class Express {
 		this.mountRoutes();
 		this.mountEnv();
 		this.mountCustomMiddleware();
+		this.mountDB();
 	}
 	static express(): any {
 		throw new Error('Method not implemented.');
 	}
-
+    private mountDB() : void{
+	     new DB().init();
+	}
 	private mountEnv(): void {
 		this.app = Locals.init(this.app);
 	}

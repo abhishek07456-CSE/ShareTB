@@ -17,16 +17,21 @@ class Locals {
         const apiPrefix = 'api';
         const maxUploadLimit = process.env.APP_MAX_UPLOAD_LIMIT || '50mb';
 		const maxParameterLimit = process.env.APP_MAX_PARAMETER_LIMIT || '50mb';
+        const DbUrl  = process.env.DB_URL  || 'mongodb://localhost:27017';
+        const DbName = process.env.DB_NAME || 'ShareTube';
         return {
             port,
             url,
             apiPrefix,
             maxUploadLimit,
-            maxParameterLimit
+            maxParameterLimit,
+            DbUrl,
+            DbName
         };
     }
 
     public init(_app: express.Application): express.Application {
+        console.log("hello:")
         _app.locals.app = this.config();
         // console.log(_app.locals.app.port);
         return _app;
