@@ -32,6 +32,8 @@ class Express {
 	}
     private mountDB() : void{
 	     new DB().init();
+		 let db = DB.getConnection();
+		//  db.collection("sharetube").insert({id:"abhishek"});
 	}
 	private mountEnv(): void {
 		this.app = Locals.init(this.app);
