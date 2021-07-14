@@ -1,7 +1,7 @@
 import Router from 'express';
+import controller from '../Controller/ControllerMapping';
 const router = Router();
-router.get('/', (req: any, res: any) => {
-     res.send("Public Api !!!");
-});
+
+router.post('/register', controller.sign_in);
 
 export default router;

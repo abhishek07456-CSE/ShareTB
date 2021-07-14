@@ -13,12 +13,12 @@ class DB {
                     console.log(`ERROR WHILE CONNECTING TO DB : ${err}`)
                } else {
                     DB.db = mongoose.connection.db;
-                    DB.db.collection("sharetube1").insertOne({id:"1610991031",name:"abhishek"},(err,result)=>{
-                               if(err)
-                               console.log(err);
-                               else
-                               console.log(result);
-                    });
+                    // DB.db.collection("sharetube1").insertOne({id:"1610991031",name:"abhishek"},(err,result)=>{
+                    //            if(err)
+                    //            console.log(err);
+                    //            else
+                    //            console.log(result);
+                    // });
                     console.log("connection success");
                }
           })
