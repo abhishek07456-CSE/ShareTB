@@ -1,7 +1,9 @@
+import SignupModel from "../Models/SignupModel";
 class SignController {
-      public static  registration_Controller = (req,res) : any => {
-            console.log("ehelloooeeeeeeeeee");
-            res.send("hello world");
+      public static  registration_Controller = (req : any ,res : any) : any => {
+            console.log(req.body);
+            let data = new SignupModel().saveSignupDetails(req.body);
+            res.send(data);
       }
 }
 

@@ -11,6 +11,7 @@ import Routes from './Routes';
 import ExceptionHandler from '../ErrorHandler/Handler';
 import Kernel  from '../Middleware/Kernel';
 import DB from './DB';
+import DbsAction from './DbsAction';
 class Express {
 	/**
 	 * Create the express object
@@ -22,18 +23,16 @@ class Express {
 	 */
 	public constructor() {
 		this.app = express();
-		this.mountRoutes();
+		this.mountDB();
 		this.mountEnv();
 		this.mountCustomMiddleware();
-		this.mountDB();
+		this.mountRoutes();
 	}
 	static express(): any {
 		throw new Error('Method not implemented.');
 	}
     private mountDB() : void{
-	     new DB().init();
-		 let db = DB.getConnection();
-		//  db.collection("sharetube").insert({id:"abhishek"});
+         DbsAction.init();
 	}
 	private mountEnv(): void {
 		this.app = Locals.init(this.app);
