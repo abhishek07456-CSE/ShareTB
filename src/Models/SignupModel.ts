@@ -1,8 +1,7 @@
 import Model from "./Model";
 export default class SignupModel extends Model{
-    private static schema = "user";
-    public static getSchema = () => SignupModel.schema;
+    protected collection : String = "user";
     public saveSignupDetails = (data:any) => {
-        SignupModel.insert(SignupModel.schema , data);
+       return this.save(data);
     }
 }
