@@ -1,9 +1,14 @@
 import mongoose from "mongoose";
+import validator from 'validator';
 const schema = mongoose.Schema;
-var userSchema = new schema({
+var signupSchema: any = new schema({
     email: {
         type: schema.Types.String,
-        required: true
+        required: true,
+        unique: true,
+        validate: (value) => {
+            return validator.isEmail(value)
+        }
     },
     first_name: {
         type: schema.Types.String,
@@ -18,4 +23,4 @@ var userSchema = new schema({
         required: true,
     }
 });
-mongoose.model('user',userSchema);
+export default mongoose.model("users", signupSchema);

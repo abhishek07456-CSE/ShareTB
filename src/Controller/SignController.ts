@@ -1,8 +1,9 @@
-import SignupModel from "../Models/SignupModel";
+import SignupService from "../Service/SignupService";
 class SignController {
-      public static  registration_Controller = (req : any ,res : any) : any => {
-            const data = new SignupModel().saveSignupDetails(req.body);
-            res.send(data);
+      public static  registration_Controller = async(req : any ,res : any) => {
+            const data = await SignupService.signUpService(req.body);
+            console.log(data);
+            res.json(data);
       }
 }
 
