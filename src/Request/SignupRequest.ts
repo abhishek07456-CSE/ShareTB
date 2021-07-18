@@ -21,6 +21,9 @@ var signupSchema: any = new schema({
     password: {
         type: schema.Types.String,
         required: true,
+        validate: (value) => {
+            return validator.isStrongPassword(value)
+        }
     }
 });
 export default mongoose.model("users", signupSchema);
