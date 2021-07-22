@@ -1,8 +1,7 @@
-import SignController from "./SignController"
-import LoginController from "./LoginController";
-const sign_in = SignController.registration_Controller;
-const login = LoginController.login;
+import UserController from "./UserController"
+const register = UserController.register;
+const login = UserController.login;
 export default  {
-    sign_in,
+    register,
     login
 }

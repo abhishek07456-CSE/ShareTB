@@ -12,11 +12,11 @@ export default abstract class IRequest implements Request {
       allowUnknown: true,
       stripUnknown: true
     };
-    const { error, value } = schemaRule.validate(args[0].body , options);
+    return schemaRule.validate(args[0].body , options);
     // if (error) {
     //   throw new Error(`${error.details.map(x => x.message).join(', ')}`);
     //   // on fail return comma separated errors
     // }
-    return error;
+    // return error;
   }
 }

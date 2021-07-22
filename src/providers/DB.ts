@@ -8,7 +8,7 @@ abstract class DB {
           const dbName = Local.config().DbName;
           const options = { useNewUrlParser: true, seUnifiedTopology: true };
           console.log(`${url}/${dbName}`);
-          mongoose.connect(`${url}/${dbName}`, options, (err: any) => {
+          mongoose.connect(`${url}/${dbName}`, {}, (err: any) => {
                if (err) {
                     console.log(`ERROR WHILE CONNECTING TO DB : ${err}`)
                } else {
