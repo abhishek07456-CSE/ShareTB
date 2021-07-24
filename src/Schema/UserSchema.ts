@@ -28,7 +28,9 @@ var UserSchema: any = new schema<IUserModel>(
             validate: (value) => {
                 return validator.isStrongPassword(value)
             },
-            set : (value) => encrypt(value)
+            set: (value: string): void => {
+                encrypt(value);
+            }
         }
     },
     {
