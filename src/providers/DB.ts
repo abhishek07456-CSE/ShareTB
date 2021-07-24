@@ -1,7 +1,5 @@
-import "reflect-metadata";
 import mongoose from 'mongoose';
 import Local from './Local';
-import { createConnection, Db } from "typeorm";
 abstract class DB {
      public static db: any;
      static init(): any {
@@ -17,12 +15,6 @@ abstract class DB {
                     console.log("connection success");
                }
           })
-     }
-     static connect = () => {
-          createConnection().then(async connection => {
-            DB.db  = connection;
-            console.log("connection success");
-          }).catch(error => console.log(error));
      }
      static getConnection(): any {
           return DB.db;

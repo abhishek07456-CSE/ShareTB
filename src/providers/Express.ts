@@ -32,7 +32,7 @@ class Express {
 		throw new Error('Method not implemented.');
 	}
     private mountDB() : void{
-         DbsAction.connect();
+         DbsAction.init();
 	}
 	private mountEnv(): void {
 		this.app = Locals.init(this.app);

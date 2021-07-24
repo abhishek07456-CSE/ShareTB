@@ -1,7 +1,9 @@
+import { IUserModel } from '../Interface/IUserModel';
 import mongoose from "mongoose";
 import validator from 'validator';
+import { beforeSaveHook } from "./BaseMiddleware";
 const schema = mongoose.Schema;
-var signupSchema: any = new schema({
+var UserSchema: any = new schema<IUserModel>({
     email: {
         type: schema.Types.String,
         required: true,
@@ -26,4 +28,11 @@ var signupSchema: any = new schema({
         }
     }
 });
-export default mongoose.model("users", signupSchema);
+
+UserSchema.pre('save', (next) => {
+    beforeSaveHook(this);
+    next();
+});
+const User = mongoose.model<IUserModel>('user', UserSchema);
+
+export default User;
