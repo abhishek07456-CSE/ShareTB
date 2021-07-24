@@ -5,7 +5,6 @@ class SignController {
       public static  register = async(req : any ,res : any , next : any) => {
             const data = await SignupService.signup(req.body);
             res.json(data);
-            next();
       }
       public static  login = async (req : LoginRequest , res : any , next : any) => {
                 let requestData = new LoginRequest().validateRequest(req,next);

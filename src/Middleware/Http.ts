@@ -10,13 +10,9 @@ import Locals from '../providers/Local';
 
 class Http {
 	public static mount(app: Application): Application {
-		app.use(bodyParser.json({
-			limit: Locals.config().maxUploadLimit
-		}));
+		app.use(bodyParser.json());
+		app.use(bodyParser.urlencoded({ extended: true }));
 
-		app.use(bodyParser.urlencoded({
-			limit: Locals.config().maxUploadLimit
-		}));
 
 		// Disable the x-powered-by header in response
 		app.disable('x-powered-by');
