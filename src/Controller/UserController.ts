@@ -1,15 +1,15 @@
-import { Authenticator } from './../Middleware/Authenticator';
 import LoginRequest from "../Schema/LoginRequest";
-import SignupService from "../Service/UserService";
+import UserService from "../Service/UserService";
 class SignController {
       public static  register = async(req : any ,res : any , next : any) => {
-            const data = await SignupService.signup(req.body);
+            const data = await UserService.signup(req.body);
             res.json(data);
+            next();
       }
       public static  login = async (req : any , res : any , next : any) => {
-                let token =  Authenticator.getToken(req);
-                console.log(token);
-                next();
+             const data = await UserService.login(req.body);
+             res.json(data);
+             next();
       }
 }
 

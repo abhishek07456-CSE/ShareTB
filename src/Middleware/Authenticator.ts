@@ -1,8 +1,11 @@
 import jwt from 'jsonwebtoken';
-import { getMongoRepository } from 'typeorm';
+import { IUserModel } from '../Interface/IUserModel';
 import Local from '../providers/Local';
-import { encrypt } from '../Service/EncryptDecrypt';
+import User from '../Schema/UserSchema';
+import { encrypt , compareHash} from '../Service/EncryptDecrypt';
+
 export class Authenticator {
+    public static user: IUserModel;
     public static authenticateJWT = (req, res, next) => {
         const authHeader = req.headers.authorization;
 
@@ -18,17 +21,19 @@ export class Authenticator {
             });
         } else {
             res.sendStatus(401);
+            next();
         }
     };
-    public static getToken = async (data) => {
-        // const userRepository = getMongoRepository(User);
-        // const users = await userRepository.find({
-        //     where: {
-        //         'email': data.email,
-        //         "password" : data.password
-        //     }
-        // });
-        // console.log(users.entries());
-        return await jwt.sign(data, Local.config().TOKEN_SECRET, { expiresIn: Local.config().TOKEN_EXPIRE_TIME });
+    public static refreshToken = async (data: any) => {
+        let _user: any = new User();
+        _user = await _user.collection.findOne({ email: data.email });
+        //to-do make IUserMode variable initialize and make global EXCEPTION
+        if (_user==null)
+            return "user not found";
+        else if(!compareHash(data.password,_user.password))
+            return "password not correct";
+        let token = await jwt.sign({id:_user.id,email:_user.email}, Local.config().TOKEN_SECRET, { expiresIn: Local.config().TOKEN_EXPIRE_TIME });
+        _user['token'] = token;
+        return _user;
     }
 }

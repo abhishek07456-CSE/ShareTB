@@ -1,7 +1,8 @@
 import UserModel from "../Models/UserModel";
 import User from "../Schema/UserSchema";
 import { IUserModel } from "../Interface/IUserModel";
-export default class SignupService {
+import { Authenticator } from './../Middleware/Authenticator';
+export default class UserService {
       public static signup = async (request: any) => {
             const user: IUserModel = new User();
             user.email = request.email;
@@ -12,5 +13,8 @@ export default class SignupService {
             return await user.save().catch((err) => {
                   console.log(err);
             });
+      }
+      public static login = async (request: any) => {
+           return await Authenticator.refreshToken(request);
       }
 }
