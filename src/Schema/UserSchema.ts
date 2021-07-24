@@ -2,6 +2,7 @@ import { IUserModel } from '../Interface/IUserModel';
 import mongoose from "mongoose";
 import validator from 'validator';
 import { beforeSaveHook } from "./BaseMiddleware";
+import { encrypt } from '../Service/EncryptDecrypt';
 const schema = mongoose.Schema;
 var UserSchema: any = new schema<IUserModel>(
     {
@@ -26,7 +27,8 @@ var UserSchema: any = new schema<IUserModel>(
             required: true,
             validate: (value) => {
                 return validator.isStrongPassword(value)
-            }
+            },
+            set : (value) => encrypt(value)
         }
     },
     {
