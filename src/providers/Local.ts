@@ -21,7 +21,7 @@ class Locals {
         const DbName = process.env.DB_NAME || 'sharetube';
         const private_endpoint = '/api';
         const public_endpoint  = '/';
-        const TOKEN_EXPIRE_TIME = process.env.TOKEN_EXPIRE_TIME || 1800;
+        const TOKEN_EXPIRE_TIME = process.env.TOKEN_EXPIRE_TIME || "1800s";
         const TOKEN_SECRET = process.env.TOKEN_SECRET || 'sharetubesharefiletogether';
         return {
             port,

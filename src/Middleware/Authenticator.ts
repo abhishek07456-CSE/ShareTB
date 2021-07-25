@@ -16,7 +16,7 @@ export class Authenticator {
                 if (err) {
                     return res.status(401).send(err);
                 }
-                req.user = user;
+                res.user = user;
                 next();
             });
         } else {
@@ -32,7 +32,7 @@ export class Authenticator {
             return "user not found";
         else if(!compareHash(data.password,_user.password))
             return "password not correct";
-        let token = await jwt.sign({id:_user.id,email:_user.email}, Local.config().TOKEN_SECRET, { expiresIn: Local.config().TOKEN_EXPIRE_TIME });
+        let token = await jwt.sign({id:_user._id,email:_user.email}, Local.config().TOKEN_SECRET, { expiresIn: Local.config().TOKEN_EXPIRE_TIME });
         _user['token'] = token;
         return _user;
     }

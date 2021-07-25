@@ -13,7 +13,7 @@ class SignController {
       }
 
       public static getProfile = async (req : any , res : any , next : any) => {
-            return res.status(200).json({id:req.params.id});
+            return res.status(200).json(res.user);
       }
 }
 
