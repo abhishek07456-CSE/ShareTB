@@ -12,15 +12,15 @@ export class Authenticator {
         if (authHeader) {
             const token = authHeader.split(' ')[1];
 
-            jwt.verify(token, Local.config().secretKey, (err, user) => {
+            jwt.verify(token, Local.config().TOKEN_SECRET, (err, user) => {
                 if (err) {
-                    return res.sendStatus(403);
+                    return res.status(401).send(err);
                 }
                 req.user = user;
                 next();
             });
         } else {
-            res.sendStatus(401);
+            res.status(401).send({error : "Token Not Found"});
             next();
         }
     };

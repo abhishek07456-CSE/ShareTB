@@ -9,9 +9,10 @@ import express from 'express';
 import privateApi from '../Router/PrivateApi';
 import publicApi from '../Router/PublicApi';
 import Local from './Local';
+import { Authenticator } from '../Middleware/Authenticator';
 class Routes {
     public mountPrivateApi = (app: express.Application): express.Application => {
-        app.use(`${Local.config().private_endpoint}`, privateApi);
+        app.use(`${Local.config().private_endpoint}`, Authenticator.authenticateJWT , privateApi);
         return app;
     }
     public mountPublicApi = (app: express.Application): express.Application => {

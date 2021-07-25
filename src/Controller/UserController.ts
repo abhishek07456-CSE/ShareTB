@@ -11,6 +11,10 @@ class SignController {
              res.json(data);
              next();
       }
+
+      public static getProfile = async (req : any , res : any , next : any) => {
+            return res.status(200).json({id:req.params.id});
+      }
 }
 
 export default SignController;
