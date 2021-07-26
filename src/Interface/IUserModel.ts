@@ -4,5 +4,4 @@ export interface IUserModel extends BaseModel{
     first_name: string;
     last_name: number;
     password: string;
-    findByEmail():any;
 }

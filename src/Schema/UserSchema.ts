@@ -1,10 +1,9 @@
 import { IUserModel } from '../Interface/IUserModel';
 import mongoose from "mongoose";
 import validator from 'validator';
-import { beforeSaveHook } from "./BaseMiddleware";
 import { encrypt } from '../Service/EncryptDecrypt';
 const schema = mongoose.Schema;
-var UserSchema: any = new schema<IUserModel>(
+let definition: any = new schema<IUserModel>(
     {
         email: {
             type: schema.Types.String,
@@ -42,6 +41,6 @@ var UserSchema: any = new schema<IUserModel>(
 //     beforeSaveHook(this);
 //     next();
 // });
-const User = mongoose.model<IUserModel>('user', UserSchema);
+const UserSchema = mongoose.model<IUserModel>('user', definition);
 
-export default User;
+export default UserSchema;

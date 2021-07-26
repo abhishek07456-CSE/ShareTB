@@ -4,18 +4,21 @@ import Local from '../providers/Local';
 import User from '../Schema/UserSchema';
 import { encrypt , compareHash} from '../Service/EncryptDecrypt';
 import Handler from '../ErrorHandler/Handler';
+import UserModel from '../Models/UserModel';
 export class Authenticator {
     public static user: IUserModel;
     public static authenticateJWT = (req, res, next) => {
         const authHeader = req.headers.authorization;
-
         if (authHeader) {
             const token = authHeader.split(' ')[1];
 
-            jwt.verify(token, Local.config().TOKEN_SECRET, (err, user) => {
+            jwt.verify(token, Local.config().TOKEN_SECRET,  (err, user) => {
                 if (err) {
                     return res.status(401).send(err);
                 }
+                const User = new UserModel();
+                const dat =  User.getUserById(user.id);
+                console.log(dat);
                 res.user = user;
                 next();
             });
@@ -34,7 +37,6 @@ export class Authenticator {
         }else if(!compareHash(request.body.password,_user.password)){
              return next(Handler.throwError('Password Not Correct', Handler.NOT_ALLOWED));
         }
-        console.log(_user);
         let token = await jwt.sign({id:_user._id,email:_user.email}, Local.config().TOKEN_SECRET, { expiresIn: Local.config().TOKEN_EXPIRE_TIME });
         _user['token'] = token;
         response.data = _user;

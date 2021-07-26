@@ -1,10 +1,8 @@
 import UserModel from "../Models/UserModel";
-import User from "../Schema/UserSchema";
-import { IUserModel } from "../Interface/IUserModel";
-import { Authenticator } from './../Middleware/Authenticator';
+import UserSchema from "../Schema/UserSchema";
 export default class UserService {
       public static signup = async (request: any) => {
-            const user: IUserModel = new User();
+            const user: any = new UserSchema();
             user.email = request.email;
             user.first_name = request.first_name;
             user.last_name = request.last_name;
