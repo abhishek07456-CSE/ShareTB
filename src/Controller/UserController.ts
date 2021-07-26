@@ -7,8 +7,7 @@ class SignController {
             next();
       }
       public static  login = async (req : any , res : any , next : any) => {
-             const data = await UserService.login(req.body);
-             res.json(data);
+             res.json(res.data);
              next();
       }
 

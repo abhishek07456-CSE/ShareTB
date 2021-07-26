@@ -15,5 +15,10 @@
       "forceConsistentCasingInFileNames": true,
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
-   }
+      "typeRoots": ["overrides", "node_modules/@types"]
+   },
+   "exclude": [
+      "node_modules",
+      "build",
+    ]
 }

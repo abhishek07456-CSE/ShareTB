@@ -10,7 +10,6 @@ import Locals from './Local';
 import Routes from './Routes';
 import ExceptionHandler from '../ErrorHandler/Handler';
 import Kernel  from '../Middleware/Kernel';
-import DB from './DB';
 import DbsAction from './DbsAction';
 class Express {
 	/**

@@ -14,7 +14,4 @@ export default class UserService {
                   console.log(err);
             });
       }
-      public static login = async (request: any) => {
-           return await Authenticator.refreshToken(request);
-      }
 }
