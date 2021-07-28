@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongoose';
-import { IUserModel } from './../Interface/IUserModel';
+import { resolve } from 'url';
 import UserRepository from '../Repository/UserRepository';
 export default class UserModel{
     userRepo : UserRepository;
@@ -7,8 +7,10 @@ export default class UserModel{
         this.userRepo = new UserRepository();
     }
     public getUserById =  (_id : ObjectId) => {
-        return  this.userRepo.findById(_id ,(err,result)=> {
-            return result;
-        });
+       return this.userRepo.findById(_id).then((data) => {
+           return data;
+       }).catch((err)=>{
+           throw err;
+       });
     }
 }

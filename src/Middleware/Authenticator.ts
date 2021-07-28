@@ -7,19 +7,18 @@ import Handler from '../ErrorHandler/Handler';
 import UserModel from '../Models/UserModel';
 export class Authenticator {
     public static user: IUserModel;
-    public static authenticateJWT = (req, res, next) => {
+    public static authenticateJWT =  (req, res, next) => {
         const authHeader = req.headers.authorization;
         if (authHeader) {
             const token = authHeader.split(' ')[1];
 
-            jwt.verify(token, Local.config().TOKEN_SECRET,  (err, user) => {
+            jwt.verify(token, Local.config().TOKEN_SECRET,  async (err, user) => {
                 if (err) {
                     return res.status(401).send(err);
                 }
                 const User = new UserModel();
-                const dat =  User.getUserById(user.id);
-                console.log(dat);
-                res.user = user;
+                const dat = await User.getUserById(user.id);
+                res.user = dat;
                 next();
             });
         } else {

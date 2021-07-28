@@ -9,7 +9,7 @@ export class RepositoryBase<T extends mongoose.Document> implements IRead<T>, IW
         this._model = schemaModel;
     }
 
-    
+
     create(item: T, callback: (error: any, result: T) => void) {
         this._model.create(item, callback);
     }
@@ -27,7 +27,14 @@ export class RepositoryBase<T extends mongoose.Document> implements IRead<T>, IW
     }
 
     findById(_id: string, callback?: (error: any, result: T) => void) {
-        this._model.findById(_id, callback);
+        return new Promise((resolve, reject) => {
+            this._model.findById(_id, (error , result) => {
+                if(error)
+                 reject(error);
+                else
+                 resolve(result);
+            })
+        });
     }
 
     findOne(cond?: Object, callback?: (err: any, res: T) => void): mongoose.Query<T> {

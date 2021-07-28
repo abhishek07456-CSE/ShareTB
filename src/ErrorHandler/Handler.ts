@@ -18,9 +18,10 @@ class Handler {
             if (req.xhr) {
                 return res.status(500).send({ error: 'Something went wrong!' });
             } else {
+                const code = err.code || Handler.UNAUTHORIZED;
                 return res.status(err.code).json(
                     {
-                        code : err.code,
+                        code : code,
                         message: err.message,
                         stack: err.stack,
                     });
