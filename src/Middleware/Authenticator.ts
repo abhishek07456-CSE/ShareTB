@@ -19,7 +19,7 @@ export class Authenticator {
                 }
                 const User = new UserModel();
                 Authenticator.id = user.id;
-                const dat = await User.getUserById(user.id);
+                const dat = await User.getUserById();
                 res.user = dat;
                 next();
             });

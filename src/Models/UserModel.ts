@@ -10,8 +10,9 @@ export default class UserModel{
             this.userRepo = {...data};
          }
     }
-    public getUserById =  (_id : ObjectId) => {
-       return this.userRepo.findById(_id).then((data) => {
+    public getUserById =  (id?:ObjectId) => {
+       const user_id = id || Authenticator.id;
+       return this.userRepo.findById(user_id).then((data) => {
            return data;
        }).catch((err)=>{
            throw err;
