@@ -18,8 +18,15 @@ export class RepositoryBase<T extends mongoose.Document> implements IRead<T>, IW
         this._model.find({}, callback);
     }
 
-    update(_id: mongoose.Types.ObjectId, item: T, callback: (error: any, result: any) => void) {
-        this._model.update({ _id: _id }, item, callback);
+    update(_id: mongoose.Types.ObjectId, item: T, callback?: (error: any, result: any) => void) {
+        return new Promise((resolve, reject) => {
+            this._model.update({ _id: _id }, item, (error, result) => {
+                if (error)
+                    reject(error);
+                else
+                    resolve(result);
+            })
+        });
     }
 
     delete(_id: string, callback: (error: any, result: any) => void) {
@@ -28,11 +35,11 @@ export class RepositoryBase<T extends mongoose.Document> implements IRead<T>, IW
 
     findById(_id: string, callback?: (error: any, result: T) => void) {
         return new Promise((resolve, reject) => {
-            this._model.findById(_id, (error , result) => {
-                if(error)
-                 reject(error);
+            this._model.findById(_id, (error, result) => {
+                if (error)
+                    reject(error);
                 else
-                 resolve(result);
+                    resolve(result);
             })
         });
     }

@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongoose';
 import jwt from 'jsonwebtoken';
 import { IUserModel } from '../Interface/IUserModel';
 import Local from '../providers/Local';
@@ -6,7 +7,7 @@ import { encrypt , compareHash} from '../Service/EncryptDecrypt';
 import Handler from '../ErrorHandler/Handler';
 import UserModel from '../Models/UserModel';
 export class Authenticator {
-    public static user: IUserModel;
+    public static id: ObjectId;
     public static authenticateJWT =  (req, res, next) => {
         const authHeader = req.headers.authorization;
         if (authHeader) {
@@ -17,6 +18,7 @@ export class Authenticator {
                     return res.status(401).send(err);
                 }
                 const User = new UserModel();
+                Authenticator.id = user.id;
                 const dat = await User.getUserById(user.id);
                 res.user = dat;
                 next();

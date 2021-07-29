@@ -12,4 +12,8 @@ export default class UserService {
                   console.log(err);
             });
       }
+      public static updateProfile = async (request: any) => {
+            const user = new UserModel();
+            return await user.updateDetails(request);
+      }
 }
