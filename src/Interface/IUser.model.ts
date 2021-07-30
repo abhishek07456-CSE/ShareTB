@@ -6,4 +6,6 @@ export interface IUser extends BaseModel{
     last_name: number;
     password: string;
     is_verified? : boolean;
+    age?:number;
+    gender?:string;
 }

@@ -37,8 +37,8 @@ let definition: any = new schema<IUser>(
         },
         gender: {
             type: schema.Types.String,
-            enum: ['0', 'M', 'F'],
-            default: null
+            enum: ['' , 'O', 'M', 'F'],
+            default : ''
         },
         age: {
             type: schema.Types.Number,
