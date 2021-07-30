@@ -1,6 +1,5 @@
 import { ObjectId } from 'mongoose';
 import jwt from 'jsonwebtoken';
-import { IUserModel } from '../Interface/IUserModel';
 import Local from '../providers/Local';
 import User from '../Schema/UserSchema';
 import { encrypt , compareHash} from '../Service/EncryptDecrypt';

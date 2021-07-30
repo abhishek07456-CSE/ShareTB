@@ -1,9 +1,9 @@
-import { IUserModel } from '../Interface/IUserModel';
+import {IUser  , _document} from '../Interface/IUser.model';
 import mongoose from "mongoose";
 import validator from 'validator';
 import { encrypt } from '../Service/EncryptDecrypt';
 const schema = mongoose.Schema;
-let definition: any = new schema<IUserModel>(
+let definition: any = new schema<IUser>(
     {
         email: {
             type: schema.Types.String,
@@ -64,6 +64,6 @@ definition.virtual('Gender').get((value) => {
     }
     return mapping[value];
 });
-const UserSchema = mongoose.model<IUserModel>('user', definition);
+const UserSchema = mongoose.model<IUser>(_document, definition);
 
 export default UserSchema;
