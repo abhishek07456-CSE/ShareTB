@@ -10,10 +10,20 @@ export class RepositoryBase<T extends mongoose.Document> implements IRead<T>, IW
     }
 
 
-    create(item: T, callback: (error: any, result: T) => void) {
-        this._model.create(item, callback);
-    }
+    // create(item: T, callback: (error: any, result: T) => void) {
+    //     this._model.create(item, callback);
+    // }
 
+    create(item: T) {
+        return new Promise((resolve, reject) => {
+            this._model.create(item, (error, result) => {
+                if (error)
+                    reject(error);
+                else
+                    resolve(result);
+            })
+        });
+    }
     retrieve(callback: (error: any, result: T) => void) {
         this._model.find({}, callback);
     }
