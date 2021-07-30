@@ -1,5 +1,5 @@
 import UserModel from "../Models/UserModel";
-import UserSchema from "../Schema/UserSchema";
+import UserSchema from "../Schema/User.schema";
 export default class UserService {
       public static signup = async (request: any) => {
             const user: any = new UserSchema();
