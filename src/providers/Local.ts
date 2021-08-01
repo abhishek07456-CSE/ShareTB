@@ -23,6 +23,7 @@ class Locals {
         const public_endpoint  = '/';
         const TOKEN_EXPIRE_TIME = process.env.TOKEN_EXPIRE_TIME || "1800s";
         const TOKEN_SECRET = process.env.TOKEN_SECRET || 'sharetubesharefiletogether';
+        const AppName = "sharetube";
         return {
             port,
             url,
@@ -34,7 +35,8 @@ class Locals {
             public_endpoint,
             private_endpoint,
             TOKEN_EXPIRE_TIME,
-            TOKEN_SECRET
+            TOKEN_SECRET,
+            AppName
         };
     }
 

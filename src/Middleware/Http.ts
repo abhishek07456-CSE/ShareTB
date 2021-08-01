@@ -1,9 +1,8 @@
 import { Application } from 'express';
-import * as compress from 'compression';
+import compress from 'compression';
 import * as bodyParser from 'body-parser';
-import * as session from 'express-session';
-import * as expressValidator from 'express-validator';
-
+import formData from "express-form-data";
+import os from 'os';
 import Log from './Log';
 import Locals from '../providers/Local';
 
@@ -11,44 +10,19 @@ import Locals from '../providers/Local';
 class Http {
 	public static mount(app: Application): Application {
 		app.use(bodyParser.json());
+		app.use(bodyParser.urlencoded());
 		app.use(bodyParser.urlencoded({ extended: true }));
+		const options = {
+			uploadDir: os.tmpdir(),
+			autoClean: true
+		};
 
-
-		// Disable the x-powered-by header in response
+		app.use(formData.parse(options));
+		app.use(formData.format());
+		app.use(formData.stream());
+		app.use(formData.union());
 		app.disable('x-powered-by');
-
-		// Enables the request payload validator
-		// app.use(expressValidator());
-
-		// Enables the request flash messages
-		// app.use(flash());
-
-		/**
-		 * Enables the session store
-		 *
-		 * Note: You can also add redis-store
-		 * into the options object.
-		 */
-		// const options = {
-		// 	resave: true,
-		// 	saveUninitialized: true,
-		// 	secret: Locals.config().appSecret,
-		// 	cookie: {
-		// 		maxAge: 1209600000 // two weeks (in ms)
-		// 	},
-		// 	store: new MongoStore({
-		// 		url: process.env.MONGOOSE_URL,
-		// 		autoReconnect: true
-		// 	})
-		// };
-
-		// app.use(session(options));
-
-		// Enables the CORS
-		// app.use(cors());
-
-		// Enables the "gzip" / "deflate" compression for response
-		// app.use(compress());
+		app.use(compress());
 
 		return app;
 	}
