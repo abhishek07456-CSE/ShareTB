@@ -7,12 +7,7 @@ export default class DocumentService {
         //to-do check folder id correct or not , check permission to add
         const curr_doc : IDocument = await document.createDocument(data);
         if (curr_doc && curr_doc.parent) {
-            await document.updateByDocId(
-                curr_doc.parent,
-                {
-                    $addToSet: { children: [curr_doc._id]},
-                }
-            );
+            await document.addDocumentChildId(curr_doc.parent , [curr_doc._id]);
         }
         return curr_doc;
     }

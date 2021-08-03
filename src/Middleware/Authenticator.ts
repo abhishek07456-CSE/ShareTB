@@ -30,7 +30,6 @@ export class Authenticator {
     public static refreshToken = async (request: any , response : any , next : any) => {
         let _user: any = new User();
         _user = await _user.collection.findOne({ email: request.body.email });
-        console.log(_user);
         //to-do make IUserMode variable initialize and make global EXCEPTION
         if (_user==null){
              return next(Handler.throwError('User Not Found', Handler.NOT_FOUND));
