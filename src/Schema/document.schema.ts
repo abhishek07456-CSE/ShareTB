@@ -41,6 +41,7 @@ let definition: any = new schema<IDocument>(
         },
         parent: {
             type: schema.Types.ObjectId,
+            ref: _document,
             default: null
         },
         children: {
