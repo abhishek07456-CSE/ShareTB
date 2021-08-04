@@ -46,7 +46,7 @@ export default class DocumentModel {
 
     public isAccessible = (id: ObjectId) => {
         const doc = this.docRepo.docSchema;
-        doc.created_by = Authenticator.id;
+        doc.createdBy = Authenticator.id;
         doc._id = id;
         return this.docRepo.findOne(doc).then((data) => {
             return false;

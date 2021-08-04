@@ -10,6 +10,6 @@ export interface IDocument extends BaseModel{
     children?:ObjectId[];
     path?: string;
     type?:string;
-    created_by?:ObjectId;
-    updated_by?:ObjectId;
+    createdBy?:ObjectId;
+    updatedBy?:ObjectId;
 }

@@ -4,13 +4,13 @@ import mongoose from "mongoose";
 const schema = mongoose.Schema;
 function update(next){
     if (this.isNew) {
-        this.updated_by = Authenticator.id;
-        this.created_by = Authenticator.id;
+        this.updatedBy = Authenticator.id;
+        this.createdBy = Authenticator.id;
     } else {
-        if(!this.updated_by)
-          this._update.$set = {updated_by :  Authenticator.id};
+        if(!this.updatedBy)
+          this._update.$set = {updatedBy :  Authenticator.id};
         else
-          this.updated_by = Authenticator.id;
+          this.updatedBy = Authenticator.id;
     }
     next();
 }
@@ -53,10 +53,10 @@ let definition: any = new schema<IDocument>(
             ref: _document,
             default: []
         },
-        created_by: {
+        createdBy: {
             type: schema.Types.ObjectId,
         },
-        updated_by: {
+        updatedBy: {
             type: schema.Types.ObjectId,
         }
         /*

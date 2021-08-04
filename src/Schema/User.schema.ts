@@ -15,12 +15,12 @@ let definition: any = new schema<IUser>(
                 return validator.isEmail(value)
             }
         },
-        first_name: {
+        firstName: {
             type: schema.Types.String,
             required: true,
             trim: true,
         },
-        last_name: {
+        lastName: {
             type: schema.Types.String,
             required: true,
             trim: true,
