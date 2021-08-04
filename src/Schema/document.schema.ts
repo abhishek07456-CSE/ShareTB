@@ -1,5 +1,6 @@
 import { Authenticator } from './../Middleware/Authenticator';
 import { IDocument, _document } from '../Interface/IDocument.model';
+import { _document as _group } from '../Interface/IGroup.model';
 import mongoose from "mongoose";
 const schema = mongoose.Schema;
 function update(next){
@@ -39,9 +40,9 @@ let definition: any = new schema<IDocument>(
                 return this.type == 'F';
             }
         },
-        group : { //its group or single user itself
+        group : { //this belong to particular group
             type: schema.Types.ObjectId,
-            ref:  "group",
+            ref:  _group,
         },
         parent: {
             type: schema.Types.ObjectId,
