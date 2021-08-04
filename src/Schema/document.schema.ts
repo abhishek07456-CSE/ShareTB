@@ -39,6 +39,10 @@ let definition: any = new schema<IDocument>(
                 return this.type == 'F';
             }
         },
+        group : { //its group or single user itself
+            type: schema.Types.ObjectId,
+            ref:  "group",
+        },
         parent: {
             type: schema.Types.ObjectId,
             ref: _document,
