@@ -1,20 +1,8 @@
-import { Authenticator } from './../Middleware/Authenticator';
 import { IDocument, _document } from '../Interface/IDocument.model';
-import { _document as _group } from '../Interface/IGroup.model';
+import { _document as _group } from '../Interface/IUserSpace.model';
+import { ActionUserUpdate } from './BaseMiddleware';
 import mongoose from "mongoose";
 const schema = mongoose.Schema;
-function update(next){
-    if (this.isNew) {
-        this.updatedBy = Authenticator.id;
-        this.createdBy = Authenticator.id;
-    } else {
-        if(!this.updatedBy)
-          this._update.$set = {updatedBy :  Authenticator.id};
-        else
-          this.updatedBy = Authenticator.id;
-    }
-    next();
-}
 let definition: any = new schema<IDocument>(
     {
         name: {
@@ -72,9 +60,9 @@ let definition: any = new schema<IDocument>(
         timestamps: true
     }
 )
-definition.pre('save'  , update);
-definition.pre('update', update);
-definition.pre('delete', update);
+definition.pre('save'  , ActionUserUpdate);
+definition.pre('update', ActionUserUpdate);
+definition.pre('delete', ActionUserUpdate);
 
 
 

@@ -1,23 +1,24 @@
 import {_document as _user}  from '../Interface/IUser.model';
-import { IGroup , _document} from '../Interface/IGroup.model';
+import { IUserSpace , _document} from '../Interface/IUserSpace.model';
 import mongoose from "mongoose";
-import validator from 'validator';
+import { ActionUserUpdate } from './BaseMiddleware';
 const schema = mongoose.Schema;
-let definition: any = new schema<IGroup>(
+let definition: any = new schema<IUserSpace>(
     {
-        groupName : {
+        spaceName : {
             type: schema.Types.String,
             required: true,
             trim: true,
         },
         users : [{ // user_id => [R,W,E]
-            type: Map,
-            of: new schema({
+            type: new schema({
                 user:{
                     type:schema.Types.ObjectId,
-                    ref :_user
+                    ref :_user,
+                    required:true
                 },
                 permission : {
+                    type : schema.Types.Mixed,
                 }
             }),
         }],
@@ -32,8 +33,11 @@ let definition: any = new schema<IGroup>(
         timestamps: true
     }
 );
+definition.pre('save'  , ActionUserUpdate);
+definition.pre('update', ActionUserUpdate);
+definition.pre('delete', ActionUserUpdate);
 
 
-const GroupSchema = mongoose.model<IGroup>(_document, definition);
+const userSpaceSchema = mongoose.model<IUserSpace>(_document, definition);
 
-export default GroupSchema;
+export default userSpaceSchema;

@@ -1,9 +1,9 @@
 import { ObjectId ,Types} from 'mongoose';
 import { BaseModel } from './BaseModel';
-export const _document = "group";
-export interface IGroup extends BaseModel{
+export const _document = "user_space";
+export interface IUserSpace extends BaseModel{
     _id?:ObjectId;
-    name?: string;
+    spaceName?: string;
     users?:Map<ObjectId,[]>;
     createdBy?:ObjectId;
     updatedBy?:ObjectId;

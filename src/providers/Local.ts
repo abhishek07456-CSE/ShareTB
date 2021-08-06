@@ -41,7 +41,6 @@ class Locals {
     }
 
     public init(_app: express.Application): express.Application {
-        console.log("hello:")
         _app.locals.app = this.config();
         // console.log(_app.locals.app.port);
         return _app;
