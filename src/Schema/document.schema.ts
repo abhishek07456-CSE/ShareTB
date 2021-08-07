@@ -28,9 +28,11 @@ let definition: any = new schema<IDocument>(
                 return this.type == 'F';
             }
         },
+        //to-do check space id exists or not
         space : { //this belong to particular group
             type: schema.Types.ObjectId,
             ref:  _space,
+            required:true,
         },
         parent: {
             type: schema.Types.ObjectId,
