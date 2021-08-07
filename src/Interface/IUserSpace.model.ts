@@ -4,7 +4,7 @@ export const _document = "user_space";
 export interface IUserSpace extends BaseModel{
     _id?:ObjectId;
     spaceName?: string;
-    users?:Map<ObjectId,[]>;
+    users?:any;
     createdBy?:ObjectId;
     updatedBy?:ObjectId;
 }

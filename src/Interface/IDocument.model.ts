@@ -5,7 +5,7 @@ export interface IDocument extends BaseModel{
     _id?:ObjectId;
     name?: string;
     size?: number;
-    group?:ObjectId;
+    space?:ObjectId;
     parent?: ObjectId;
     children?:ObjectId[];
     path?: string;

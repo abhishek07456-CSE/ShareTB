@@ -1,5 +1,5 @@
 import { IDocument, _document } from '../Interface/IDocument.model';
-import { _document as _group } from '../Interface/IUserSpace.model';
+import { _document as _space } from '../Interface/IUserSpace.model';
 import { ActionUserUpdate } from './BaseMiddleware';
 import mongoose from "mongoose";
 const schema = mongoose.Schema;
@@ -28,9 +28,9 @@ let definition: any = new schema<IDocument>(
                 return this.type == 'F';
             }
         },
-        group : { //this belong to particular group
+        space : { //this belong to particular group
             type: schema.Types.ObjectId,
-            ref:  _group,
+            ref:  _space,
         },
         parent: {
             type: schema.Types.ObjectId,
