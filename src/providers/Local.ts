@@ -24,6 +24,7 @@ class Locals {
         const TOKEN_EXPIRE_TIME = process.env.TOKEN_EXPIRE_TIME || "1800s";
         const TOKEN_SECRET = process.env.TOKEN_SECRET || 'sharetubesharefiletogether';
         const AppName = "sharetube";
+        const azureContainerConn = "https://sharetube.blob.core.windows.net/sharetube?sp=racwdli&st=2021-08-07T19:39:49Z&se=2021-08-21T03:39:49Z&sip=127.0.0.1&sv=2020-08-04&sr=c&sig=krBZ%2BvZDoaYK37uQv21co%2B5onCacnWWCpCPZ%2Fw%2FqG14%3D";
         return {
             port,
             url,
@@ -36,7 +37,8 @@ class Locals {
             private_endpoint,
             TOKEN_EXPIRE_TIME,
             TOKEN_SECRET,
-            AppName
+            AppName,
+            azureContainerConn
         };
     }
 
