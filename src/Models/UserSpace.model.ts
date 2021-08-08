@@ -6,17 +6,13 @@ export default class UserSpaceModel{
     constructor() {
         this.userSpaceRepo = new UserSpaceRepository();
     }
-    public async createGroup(data: IUserSpace) {
-        const response = await Storage.init().createContainer("hello");
-        return response;
-        return this.userSpaceRepo.create(data)
+    public  createGroup(data: IUserSpace) {
+       return this.userSpaceRepo.create(data)
         .then((data : IUserSpace) => {
-            const service = Storage.init();
             return data;
         }).then((data : IUserSpace) => {
-            const response = Storage.init().createContainer(data._id);
-            console.log(response);
-            return data;
+            const response =  Storage.init().createContainer(data._id);
+            return response;
         }).catch((err) => {
             console.log(err);
             throw err;
