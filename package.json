@@ -17,6 +17,7 @@
   "dependencies": {
     "@azure/identity": "^1.5.0",
     "@azure/storage-blob": "^12.7.0",
+    "@typegoose/typegoose": "^8.1.1",
     "bcrypt": "^5.0.1",
     "compression": "^1.7.4",
     "connect": "^3.7.0",
@@ -31,7 +32,7 @@
     "joi": "^17.4.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.8",
-    "mongoose": "~5.10.1",
+    "mongoose": "~5.13.3",
     "multer": "^1.4.2",
     "passport": "^0.4.1",
     "passport-auth0": "^1.4.0",
